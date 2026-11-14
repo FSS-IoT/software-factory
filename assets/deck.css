@@ -327,6 +327,7 @@ body.notes-on .notes { display: block; }
 .hero .sub {
   font-size: clamp(1.05rem, 1.7vw, 1.4rem);
   color: var(--ink-soft); max-width: 40rem; margin: 0 0 2.2rem;
+  text-wrap: balance;
 }
 .hero .meta {
   font-family: var(--mono); font-size: .78rem; color: var(--ink-faint);
