@@ -1,5 +1,7 @@
 # The Software Factory
 
+**[Read it online](https://fss-iot.github.io/software-factory/)**
+
 A lecture deck for a room of IT people who do not program, teaching how software
 gets built by agents one station at a time.
 
