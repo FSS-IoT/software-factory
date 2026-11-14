@@ -6,6 +6,7 @@ A lecture deck for a room of IT people who do not program, teaching how software
 gets built by agents one station at a time.
 
 **Open `index.html` in a browser.** No server, no internet, no build step.
+Pushing to `main` publishes the same page from GitHub Pages.
 
 ## Presenting
 
