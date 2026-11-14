@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Software Factory: building software with agents</title>
+<meta name="description" content="A class on running software development as a factory: brief, grilling, spec, tickets, red/green, review, git, milestones, CI/CD.">
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body>
+
+<div id="progress"></div>
+
+<main class="deck">
+
+<!-- 01 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide hero" id="cover" data-title="Cover">
+  <div class="rule-accent"></div>
+  <div class="kicker">A class in six stations</div>
+  <h1>The Software<br>Factory</h1>
+  <p class="sub">You bring the idea and the judgment. Agents bring the labour.</p>
+  <div class="meta">
+    <span>about 1h45</span>
+    <span>no programming required</span>
+    <span>one live exercise</span>
+  </div>
+  <aside class="notes">
+    <p class="time">2 min</p>
+    <p>Frame it as a job change, not a tool change. Nobody here learns to write
+       software today. They learn to run a line that produces it, and the line
+       needs a person in three places: deciding, signing, accepting.</p>
+    <p>Say the promise out loud: by the end, you can take an idea you already have
+       and walk it through six stations until something is live that you can show
+       someone.</p>
+    <p>Housekeeping. <b>S</b> shows these notes. The page scrolls, and the arrow
+       keys jump a station at a time.</p>
+  </aside>
+</section>
+
+<!-- 02 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="shift" data-title="The shift">
+  <p class="eyebrow">The shift</p>
+  <h2>You are not the craftsperson any more.<br>You run the factory.</h2>
+  <div class="cols two" style="margin-top:1rem">
+    <div>
+      <h3>Old shape</h3>
+      <ul class="plain">
+        <li>One person who knows the language, the files, and where everything lives.</li>
+        <li>That knowledge sits in one head.</li>
+        <li>How fast you ship depends on how fast you type.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Factory shape</h3>
+      <ul class="plain">
+        <li>You specify. Agents build. Machines check.</li>
+        <li>The knowledge sits in the repository.</li>
+        <li>How fast you ship depends on how clearly you say what you want.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="pull">The bottleneck is no longer typing. It is deciding what <b>done</b> means.</p>
+  <aside class="notes">
+    <p class="time">4 min</p>
+    <p>Ask who has waited on the one person who knew how the system worked. That
+       person is the bottleneck we are replacing.</p>
+    <p>The factory comparison is literal, not decoration. A factory has stations
+       with defined outputs, and an inspector between the line and the customer.
+       Same shape here, except agents run most of the stations.</p>
+  </aside>
+</section>
+
+<!-- 03 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="line" data-title="The line">
+  <p class="eyebrow">The line</p>
+  <h2>Six stations, one loop</h2>
+  <p class="lede">Every station produces something you can point at. Nothing moves
+     on until that thing exists.</p>
+
+  <figure class="figure wide">
+    <svg viewBox="0 0 1120 300" role="img" aria-label="Six stations in order: brief, grilling, spec, tickets, red and green, review. A dashed return arrow goes from review back to brief, labelled next milestone.">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#414868"/>
+        </marker>
+        <marker id="ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#7aa2f7"/>
+        </marker>
+      </defs>
+
+      <!-- phase brackets -->
+      <path class="s-line" d="M20,54 V48 H370 V54"/>
+      <path class="s-line" d="M380,54 V48 H730 V54"/>
+      <path class="s-line" d="M740,54 V48 H1070 V54"/>
+      <text class="s-label s-mid" x="195" y="40">understand</text>
+      <text class="s-label s-mid" x="555" y="40">decide</text>
+      <text class="s-label s-mid" x="905" y="40">prove &amp; ship</text>
+
+      <!-- station 1 -->
+      <rect class="s-box-accent" x="20" y="64" width="150" height="96"/>
+      <text class="s-num" x="34" y="86">01</text>
+      <text class="s-title s-mid" x="95" y="112">BRIEF</text>
+      <text class="s-cap s-mid" x="95" y="133">everything you know</text>
+      <text class="s-cap s-mid" x="95" y="148">in one dump</text>
+
+      <!-- station 2 -->
+      <rect class="s-box" x="200" y="64" width="150" height="96"/>
+      <text class="s-num" x="214" y="86">02</text>
+      <text class="s-title s-mid" x="275" y="112">GRILL</text>
+      <text class="s-cap s-mid" x="275" y="133">the agent asks</text>
+      <text class="s-cap s-mid" x="275" y="148">you answer</text>
+
+      <!-- station 3 -->
+      <rect class="s-box-accent" x="380" y="64" width="150" height="96"/>
+      <text class="s-num" x="394" y="86">03</text>
+      <text class="s-title s-mid" x="455" y="112">SPEC</text>
+      <text class="s-cap s-mid" x="455" y="133">one page</text>
+      <text class="s-cap s-mid" x="455" y="148">you sign it</text>
+
+      <!-- station 4 -->
+      <rect class="s-box" x="560" y="64" width="150" height="96"/>
+      <text class="s-num" x="574" y="86">04</text>
+      <text class="s-title s-mid" x="635" y="112">TICKETS</text>
+      <text class="s-cap s-mid" x="635" y="133">small, testable</text>
+      <text class="s-cap s-mid" x="635" y="148">one at a time</text>
+
+      <!-- station 5 -->
+      <rect class="s-box" x="740" y="64" width="150" height="96"/>
+      <text class="s-num" x="754" y="86">05</text>
+      <text class="s-title s-mid" x="815" y="112">RED/GREEN</text>
+      <text class="s-cap s-mid" x="815" y="133">check first</text>
+      <text class="s-cap s-mid" x="815" y="148">code second</text>
+
+      <!-- station 6 -->
+      <rect class="s-box-accent" x="920" y="64" width="150" height="96"/>
+      <text class="s-num" x="934" y="86">06</text>
+      <text class="s-title s-mid" x="995" y="112">REVIEW</text>
+      <text class="s-cap s-mid" x="995" y="133">evidence</text>
+      <text class="s-cap s-mid" x="995" y="148">then merge</text>
+
+      <!-- flow arrows -->
+      <path class="s-line" d="M172,112 H196" marker-end="url(#ar)"/>
+      <path class="s-line" d="M352,112 H376" marker-end="url(#ar)"/>
+      <path class="s-line" d="M532,112 H556" marker-end="url(#ar)"/>
+      <path class="s-line" d="M712,112 H736" marker-end="url(#ar)"/>
+      <path class="s-line" d="M892,112 H916" marker-end="url(#ar)"/>
+
+      <!-- the loop back -->
+      <path class="s-line-accent s-dash" d="M995,162 V228 Q995,236 987,236 H103 Q95,236 95,228 V166"
+            marker-end="url(#ar-a)"/>
+      <text class="s-cap s-mid" x="545" y="220">next milestone, the line runs again</text>
+    </svg>
+    <figcaption>The arrow back to the brief is what makes this a loop. Milestone two starts at station one.</figcaption>
+  </figure>
+
+  <aside class="notes">
+    <p class="time">4 min</p>
+    <p>Walk the six boxes with your hand. The names matter less than the outputs:
+       a brief document, a transcript of decisions, a one page spec, numbered
+       issues, commits, a merge.</p>
+    <p>The stations numbered in accent colour need a human. The rest can run with
+       an agent unsupervised, at least at first.</p>
+    <p>Point at the return arrow. Milestone one ships, and the machine that built
+       it is still standing for milestone two.</p>
+  </aside>
+</section>
+
+<!-- 04 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="brief" data-title="Station 1 · The brief">
+  <p class="eyebrow"><span class="station">Station 01</span>The brief</p>
+  <h2>Start with everything you know</h2>
+  <p class="lede">Facts first, in one dump. The agent cannot invent your constraints,
+     so the only mistake here is leaving one out.</p>
+
+  <div class="cols aside">
+    <div>
+      <ul>
+        <li><b>What it does:</b> one sentence, in plain words.</li>
+        <li><b>Who uses it:</b> what device, what room.</li>
+        <li><b>Must and must not:</b> the rules that are not negotiable.</li>
+        <li><b>Constraints:</b> systems it has to talk to, budget, deadline, policy.</li>
+        <li><b>Taste:</b> two things you like, two you hate, with names.</li>
+      </ul>
+      <p class="note tip"><strong>Rambling is fine.</strong> The interview tightens it.
+         A thin brief is the one thing no station downstream can fix.</p>
+    </div>
+    <div>
+      <h4 style="font-family:var(--mono);font-size:.7rem;color:var(--ink-faint);letter-spacing:.12em;margin:0 0 .5rem">WHAT YOU TYPE</h4>
+      <pre>I want to build <b>&lt;one sentence&gt;</b>.
+
+Here is everything I know:<span class="c">
+- who uses it:
+- where they use it:
+- it must:
+- it must never:
+- it has to work with:
+- done means:
+- I hate when software:</span>
+
+<b>Do not build anything yet.</b>
+Read this, then interview me
+until you can write the spec.</pre>
+    </div>
+  </div>
+
+  <aside class="notes">
+    <p class="time">6 min</p>
+    <p>Do a live example with something from the room. Ask for an idea and type the
+       brief in front of them, badly at first. The mess is the lesson: a brief does
+       not have to be well written, it has to be complete.</p>
+    <p>Emphasise the last line. Without it, most agents start generating a project
+       skeleton before the interview ever happens, and you get code instead of
+       answers.</p>
+    <p>Facts beat adjectives. "Loads in under a second on the office wifi" is a
+       fact. "Fast and modern" is a wish.</p>
+  </aside>
+</section>
+
+<!-- 05 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="grill" data-title="Station 2 · The grilling">
+  <p class="eyebrow"><span class="station">Station 02</span>The grilling</p>
+  <h2>It interviews you, adversarially</h2>
+  <p class="lede">The agent's job here is to find the vague and contradictory parts
+     of the idea while they are still cheap to fix.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 880 300" role="img" aria-label="The grilling loop: the agent asks a question, you answer, until no remaining question would change the build. It produces a spec draft. Nothing is built in this station.">
+      <defs>
+        <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#414868"/>
+        </marker>
+        <marker id="ar2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#7aa2f7"/>
+        </marker>
+        <marker id="ar2w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#f7768e"/>
+        </marker>
+      </defs>
+
+      <rect class="s-box" x="70" y="36" width="250" height="74"/>
+      <text class="s-title s-mid" x="195" y="68">YOU</text>
+      <text class="s-cap s-mid" x="195" y="90">answer · decide · say no</text>
+
+      <rect class="s-box-accent" x="560" y="36" width="250" height="74"/>
+      <text class="s-title s-mid" x="685" y="68">AGENT</text>
+      <text class="s-cap s-mid" x="685" y="90">asks · records · sharpens</text>
+
+      <path class="s-line" d="M556,62 H334" marker-end="url(#ar2)"/>
+      <text class="s-label s-mid" x="443" y="54">question</text>
+
+      <path class="s-line" d="M324,92 H546" marker-end="url(#ar2)"/>
+      <text class="s-label s-mid" x="443" y="110">answer</text>
+
+      <text class="s-cap s-mid" x="440" y="158">repeat until no remaining question would change the build</text>
+
+      <path class="s-line-accent s-dash" d="M685,110 V208" marker-end="url(#ar2a)"/>
+      <text class="s-cap" x="700" y="170">written decisions</text>
+
+      <rect class="s-box-accent" x="560" y="212" width="250" height="60"/>
+      <text class="s-title s-mid" x="685" y="240">SPEC DRAFT</text>
+      <text class="s-cap s-mid" x="685" y="258">goes to station 03</text>
+
+      <rect class="s-box-warn s-dash" x="70" y="212" width="250" height="60" stroke-dasharray="7 7"/>
+      <text class="s-label warn s-mid" x="195" y="238">no code</text>
+      <text class="s-cap s-mid" x="195" y="256">nothing is built in this station</text>
+    </svg>
+    <figcaption>The interview is the cheap place to be wrong. Code is the expensive place.</figcaption>
+  </figure>
+
+  <div class="cols two">
+    <ul class="plain" style="margin:0">
+      <li>Nothing gets built while the questions are open.</li>
+      <li>Every answer becomes a line in the spec, or an explicit "out of scope".</li>
+      <li>Vague answers get pushed until they are testable.</li>
+    </ul>
+    <ul class="plain" style="margin:0">
+      <li>"I don't know" is an answer. Ask it to decide and tell you why.</li>
+      <li>It may argue with you. That is the job.</li>
+      <li>You end it, not the agent. Stop when answers stop changing.</li>
+    </ul>
+  </div>
+
+  <aside class="notes">
+    <p class="time">10 min</p>
+    <p>Adversarial means it attacks the idea, not you. Expect a wall of questions,
+       and answer in shorthand because the agent does the writing.</p>
+    <p>Demo it if you can. Take the brief from the last slide and ask for a
+       grilling, and let the room watch twenty questions go past. Then point at the
+       two that surfaced something you had not thought about. That moment sells the
+       workflow better than any slide.</p>
+    <p>Watch for the failure: an agent that starts building anyway. The last line
+       of the brief prevents it.</p>
+    <p>Nobody here is being asked for technical answers. "Should it email me or
+       show a badge?" is a question about their own job, and it is exactly what
+       this station produces.</p>
+  </aside>
+</section>
+
+<!-- 06 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="spec" data-title="Station 3 · The spec">
+  <p class="eyebrow"><span class="station">Station 03</span>The spec</p>
+  <h2>A spec is a contract you can test</h2>
+  <p class="lede">One page. If it needs more, the idea is not settled. Go back to
+     the grilling.</p>
+
+  <div class="cols two">
+    <div>
+      <h3>It contains</h3>
+      <ul class="plain">
+        <li>The promise: what it does, in the user's words.</li>
+        <li>Behaviours: numbered, each one checkable.</li>
+        <li>Out of scope: what it deliberately will not do.</li>
+        <li>Open questions: with a name against each one.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>A behaviour reads like this</h3>
+      <pre><b>3.</b> Given a signed-in user,
+   when they enter the wrong password,
+   then the screen says
+   <b>"That password is wrong"</b>
+   and the field is cleared.
+
+<span class="c"># checkable by a person
+# and by a machine</span></pre>
+    </div>
+  </div>
+
+  <p class="pull">Wrong at the spec: a conversation.<br>Wrong after the build: the build.</p>
+
+  <aside class="notes">
+    <p class="time">6 min</p>
+    <p>This is the hinge. Everything downstream is mechanical, and this is the last
+       station where a decision is cheap.</p>
+    <p>Read a spec aloud in the room. Circle any sentence that cannot become a yes
+       or no check, and that circle is the next grilling round.</p>
+    <p>Out of scope is not a rejection. It is a promise you are keeping, and
+       writing it down stops the ask in week three.</p>
+    <p>It lives in the repository as <code>SPEC.md</code>, next to the code and
+       versioned like everything else.</p>
+  </aside>
+</section>
+
+<!-- 07 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="tickets" data-title="Station 4 · Tickets">
+  <p class="eyebrow"><span class="station">Station 04</span>Tickets</p>
+  <h2>One ticket, one check, one commit</h2>
+  <p class="lede">The spec gets cut into slices small enough to finish, check, and
+     drop if the slice turns out wrong.</p>
+
+  <div class="cols two" style="margin-top:.4rem">
+    <div class="tile warn">
+      <h4>Too big, never finishes</h4>
+      <p>"Build the login system."</p>
+      <p style="color:var(--ink-faint);font-size:.85rem">No end and no check: weeks of agent work with nothing to hand over.</p>
+    </div>
+    <div class="tile ok">
+      <h4>Right size, finishes today</h4>
+      <p>"A wrong password shows an error and clears the field."</p>
+      <p style="color:var(--ink-faint);font-size:.85rem">One behaviour, one check, one commit, one closed ticket.</p>
+    </div>
+  </div>
+
+  <ul style="margin-top:1.4rem">
+    <li>If you cannot write the check, the ticket is too vague, not too small.</li>
+    <li>Slice by behaviour, not by layer of the system.</li>
+    <li>Foundations first: the thing that stores data before the thing that shows it.</li>
+    <li>A grilling ticket is real work. A design session is a deliverable.</li>
+  </ul>
+
+  <aside class="notes">
+    <p class="time">7 min</p>
+    <p>Use the service desk comparison, because this room already thinks in
+       tickets. An incident has a symptom, an owner and a close condition. Same
+       shape.</p>
+    <p>The test of a good ticket: could somebody who missed this meeting pick it up
+       and know when it is finished? If not, split it again.</p>
+    <p>One commit is a rule of thumb. The rule that matters is one checkable
+       behaviour.</p>
+    <p>Say the grilling ticket out loud. In a real project of mine, three features
+       each got a ticket that was only "run the design session". Each one closed
+       with a document instead of code, and that was correct.</p>
+  </aside>
+</section>
+
+<!-- 08 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="redgreen" data-title="Station 5 · Red / green">
+  <p class="eyebrow"><span class="station">Station 05</span>Red / green</p>
+  <h2>Write the check before the code</h2>
+  <p class="lede">The check has to fail first. A test that has never failed has
+     never tested anything.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 900 290" role="img" aria-label="Red green loop: write the check, run it and watch it fail, write the smallest code, run it and watch it pass, commit, then the next behaviour.">
+      <defs>
+        <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#414868"/>
+        </marker>
+        <marker id="ar3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#7aa2f7"/>
+        </marker>
+      </defs>
+
+      <rect class="s-box" x="10" y="60" width="190" height="86"/>
+      <text class="s-num" x="24" y="82">01</text>
+      <text class="s-title s-mid" x="105" y="110">WRITE THE CHECK</text>
+      <text class="s-cap s-mid" x="105" y="130">one behaviour</text>
+
+      <rect class="s-box-warn" x="235" y="60" width="190" height="86"/>
+      <text class="s-num" x="249" y="82" style="fill:var(--warn)">02</text>
+      <text class="s-title s-mid" x="330" y="110">RUN IT: RED</text>
+      <text class="s-cap s-mid" x="330" y="130">it must fail</text>
+
+      <rect class="s-box" x="460" y="60" width="190" height="86"/>
+      <text class="s-num" x="474" y="82">03</text>
+      <text class="s-title s-mid" x="555" y="110">WRITE THE CODE</text>
+      <text class="s-cap s-mid" x="555" y="130">smallest change</text>
+
+      <rect class="s-box-ok" x="685" y="60" width="190" height="86"/>
+      <text class="s-num" x="699" y="82" style="fill:var(--ok)">04</text>
+      <text class="s-title s-mid" x="780" y="110">RUN IT: GREEN</text>
+      <text class="s-cap s-mid" x="780" y="130">commit</text>
+
+      <path class="s-line" d="M202,103 H231" marker-end="url(#ar3)"/>
+      <path class="s-line" d="M427,103 H456" marker-end="url(#ar3)"/>
+      <path class="s-line" d="M652,103 H681" marker-end="url(#ar3)"/>
+
+      <path class="s-line-accent s-dash" d="M780,148 V210 Q780,218 772,218 H113 Q105,218 105,210 V150"
+            marker-end="url(#ar3a)"/>
+      <text class="s-cap s-mid" x="443" y="204">next behaviour</text>
+
+      <text class="s-cap s-mid" x="440" y="258" style="font-style:italic">Nobody trusts a smoke alarm they have never pressed.</text>
+    </svg>
+  </figure>
+
+  <div class="cols two">
+    <ul class="plain" style="margin:0">
+      <li><b>Red</b> proves the check can fail. Without that, a green result means nothing.</li>
+      <li><b>Green</b> proves the change did what the ticket asked.</li>
+    </ul>
+    <ul class="plain" style="margin:0">
+      <li>Commit at green, so every commit is a working state.</li>
+      <li>The agent runs the loop. You read the result.</li>
+    </ul>
+  </div>
+
+  <aside class="notes">
+    <p class="time">8 min</p>
+    <p>The comparison that lands is a checklist: the agent may not tick a box it
+       has not first watched fail. Otherwise done is an opinion.</p>
+    <p>This station is what protects you from confident nonsense. An agent can
+       write a check that always passes, and red first catches it.</p>
+    <p>Do not teach them to write tests. Teach them to ask for red proof: show me
+       the check failing before you fix it. That one sentence is worth the whole
+       station.</p>
+  </aside>
+</section>
+
+<!-- 09 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="review" data-title="Station 6 · Review">
+  <p class="eyebrow"><span class="station">Station 06</span>Review &amp; merge</p>
+  <h2>The agent's work is a proposal, not a delivery</h2>
+  <p class="lede">Done is a claim. A merge is evidence.</p>
+
+  <div class="cols two">
+    <div>
+      <h3>Ask these four</h3>
+      <ul class="plain">
+        <li>What did it change, in plain language?</li>
+        <li>What did it leave out that the ticket asked for?</li>
+        <li>Where is the check that failed first?</li>
+        <li>What did this break that used to work?</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Then a second agent reads it</h3>
+      <ul class="plain">
+        <li>A fresh agent reviews the change with no memory of writing it.</li>
+        <li>It hunts for gaps, not style.</li>
+        <li>You read both lists and decide.</li>
+      </ul>
+      <p class="note tip" style="margin-top:.8rem"><strong>Merge means this is now the
+         machine.</strong> Everything after it is maintenance of your own decision.</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    <p class="time">6 min</p>
+    <p>Non-programmers can review. They cannot read the code, but they can read the
+       summary, the ticket and the evidence, and they can ask what was left out.
+       That question finds most of the problems.</p>
+    <p>The reviewer agent is not ceremony. The author is biased toward its own
+       work, and a second one is not.</p>
+  </aside>
+</section>
+
+<!-- 10 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="git" data-title="Git &amp; GitHub">
+  <p class="eyebrow">The logbook</p>
+  <h2>Git is the factory's memory</h2>
+  <p class="lede">You will not type git commands; the agent does. You need the
+     nouns, because every conversation about the work uses them.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 900 280" role="img" aria-label="A main line of commits with a branch curving off, two commits on the branch, and a merge back into main.">
+      <defs>
+        <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#414868"/>
+        </marker>
+        <marker id="ar4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#7aa2f7"/>
+        </marker>
+      </defs>
+
+      <text class="s-label s-mid" x="450" y="72">main: what is live</text>
+      <path class="s-line" d="M60,110 H856" marker-end="url(#ar4)"/>
+      <text class="s-cap s-end" x="898" y="114">time</text>
+
+      <circle class="s-dot" cx="90"  cy="110" r="7"/>
+      <circle class="s-dot" cx="175" cy="110" r="7"/>
+      <circle class="s-dot" cx="260" cy="110" r="7"/>
+      <circle class="s-dot" cx="345" cy="110" r="7"/>
+      <circle class="s-dot" cx="505" cy="110" r="7"/>
+      <circle class="s-dot" cx="585" cy="110" r="7"/>
+      <circle class="s-dot" cx="665" cy="110" r="7"/>
+      <circle class="s-dot" cx="745" cy="110" r="7"/>
+
+      <text class="s-cap s-mid" x="90" y="140">commit</text>
+
+      <path class="s-line-accent" d="M345,110 C367,182 387,192 417,192 H652 C688,192 712,152 722,108"
+            marker-end="url(#ar4a)"/>
+      <circle class="s-dot" cx="440" cy="192" r="6" style="fill:var(--term)"/>
+      <circle class="s-dot" cx="520" cy="192" r="6" style="fill:var(--term)"/>
+      <text class="s-cap s-mid" x="480" y="222">a branch: a copy where one change is safe</text>
+      <text class="s-label s-mid" x="760" y="160">merge</text>
+    </svg>
+  </figure>
+
+  <table>
+    <tbody>
+      <tr><td><b>commit</b></td><td>A snapshot of everything, with a note saying why it changed.</td></tr>
+      <tr><td><b>branch</b></td><td>A parallel copy of the project for one change, so main keeps working.</td></tr>
+      <tr><td><b>pull request</b></td><td>"Here is my change, please check it." A conversation with a diff attached.</td></tr>
+      <tr><td><b>merge</b></td><td>The change joins main. From here it is everyone's problem.</td></tr>
+      <tr><td><b>history</b></td><td>Every snapshot, who made it, when, and why. Nobody has to remember.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note tip"><strong>The rule that matters:</strong> commit small, and make the
+     message say <em>why</em>. "Fix bug" is worthless in six months. "Reject the wrong
+     password, because the field kept the old value" is a paragraph of memory.</p>
+
+  <aside class="notes">
+    <p class="time">8 min</p>
+    <p>Do not open a terminal. Use the diagram. If they remember one thing, it is
+       that main is what is live and a branch is somewhere safe to try.</p>
+    <p>Commit messages are the cheapest habit here, and the one they can enforce
+       from day one: make the message say why.</p>
+    <p>Reassure them. Agents run the commands, and mistakes are recoverable because
+       git keeps every snapshot, including the bad ones.</p>
+  </aside>
+</section>
+
+<!-- 11 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="board" data-title="Issues &amp; milestones">
+  <p class="eyebrow">The plan</p>
+  <h2>Milestones are the plan.<br>Issues are the work.</h2>
+
+  <figure class="figure">
+    <svg viewBox="0 0 900 320" role="img" aria-label="A milestone bracket over three board columns: to do, doing, done. Issues move left to right and the milestone closes when the last issue closes.">
+      <path class="s-line-accent" d="M30,46 V40 H870 V46"/>
+      <text class="s-label s-mid" x="450" y="30" style="fill:var(--accent)">milestone: v1 ships when every issue here closes</text>
+
+      <rect class="s-box" x="30" y="58" width="260" height="210"/>
+      <text class="s-label" x="46" y="86">to do</text>
+      <rect class="s-box" x="44" y="100" width="232" height="38"/>
+      <text class="s-cap" x="58" y="124" style="fill:var(--ink-soft)">#9 &nbsp;reset by email</text>
+      <rect class="s-box" x="44" y="148" width="232" height="38"/>
+      <text class="s-cap" x="58" y="172" style="fill:var(--ink-soft)">#10 &nbsp;show the error</text>
+      <rect class="s-box" x="44" y="196" width="232" height="38"/>
+      <text class="s-cap" x="58" y="220" style="fill:var(--ink-soft)">#11 &nbsp;lock after 5 tries</text>
+
+      <rect class="s-box" x="320" y="58" width="260" height="210"/>
+      <text class="s-label" x="336" y="86">doing</text>
+      <rect class="s-box-accent" x="334" y="100" width="232" height="38"/>
+      <text class="s-cap" x="348" y="124" style="fill:var(--ink)">#7 &nbsp;wrong password rejected</text>
+      <text class="s-cap" x="348" y="176">one branch, one agent,</text>
+      <text class="s-cap" x="348" y="192">one check</text>
+
+      <rect class="s-box" x="610" y="58" width="260" height="210"/>
+      <text class="s-label" x="626" y="86">done</text>
+      <rect class="s-box-ok" x="624" y="100" width="232" height="38"/>
+      <text class="s-cap" x="638" y="124" style="fill:var(--ok)">✓ #6 &nbsp;login form</text>
+      <rect class="s-box-ok" x="624" y="148" width="232" height="38"/>
+      <text class="s-cap" x="638" y="172" style="fill:var(--ok)">✓ #5 &nbsp;user accounts</text>
+
+      <text class="s-cap s-mid" x="450" y="300">An issue closes with the commit that did it. A milestone closes when the column is empty.</text>
+    </svg>
+  </figure>
+
+  <div class="cols two">
+    <ul class="plain" style="margin:0">
+      <li><b>Issue:</b> a numbered ticket with the ask, the conversation, and the close condition.</li>
+      <li><b>Milestone:</b> a group of issues that ship together, like a release.</li>
+    </ul>
+    <ul class="plain" style="margin:0">
+      <li><b>Labels:</b> bug, spec, blocked. Cheap, and they end arguments.</li>
+      <li>Chat is not a plan. If it is not an issue, nobody is tracking it.</li>
+    </ul>
+  </div>
+
+  <aside class="notes">
+    <p class="time">7 min</p>
+    <p>This is where the factory becomes visible to management. The board is the
+       line's state, and the milestone is the shipment date.</p>
+    <p>A real one from this term: a milestone of eleven issues, foundation first,
+       then the visible features, then the documentation. All eleven closed and
+       deployed.</p>
+    <p>Enforce the close condition. An issue closes with a commit reference, not
+       with a feeling, or the board lies within a week.</p>
+  </aside>
+</section>
+
+<!-- 12 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="ci" data-title="CI / CD">
+  <p class="eyebrow">The inspector</p>
+  <h2>A robot checks every change</h2>
+  <p class="lede">CI is a fresh machine that builds the project and runs every check,
+     every time. Nobody argues with the robot.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 900 300" role="img" aria-label="Pipeline: push, checks, merge, deploy. A red dashed path goes from failed checks back to push, labelled stop, fix, push again.">
+      <defs>
+        <marker id="ar5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#414868"/>
+        </marker>
+        <marker id="ar5w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#f7768e"/>
+        </marker>
+      </defs>
+
+      <text class="s-label" x="20" y="34">continuous integration</text>
+      <text class="s-label" x="680" y="34" style="fill:var(--ok)">continuous delivery</text>
+
+      <rect class="s-box" x="20" y="56" width="170" height="80"/>
+      <text class="s-title s-mid" x="105" y="90">PUSH</text>
+      <text class="s-cap s-mid" x="105" y="110">the agent's commits</text>
+
+      <rect class="s-box-accent" x="240" y="56" width="170" height="80"/>
+      <text class="s-title s-mid" x="325" y="90">CHECKS</text>
+      <text class="s-cap s-mid" x="325" y="110">build · test · lint</text>
+
+      <rect class="s-box" x="460" y="56" width="170" height="80"/>
+      <text class="s-title s-mid" x="545" y="90">MERGE</text>
+      <text class="s-cap s-mid" x="545" y="110">a human says yes</text>
+
+      <rect class="s-box-ok" x="680" y="56" width="170" height="80"/>
+      <text class="s-title s-mid" x="765" y="90">DEPLOY</text>
+      <text class="s-cap s-mid" x="765" y="110">same steps, every time</text>
+
+      <path class="s-line" d="M192,96 H236" marker-end="url(#ar5)"/>
+      <path class="s-line" d="M412,96 H456" marker-end="url(#ar5)"/>
+      <path class="s-line" d="M632,96 H676" marker-end="url(#ar5)"/>
+
+      <path class="s-line-warn s-dash" d="M325,138 V224 Q325,232 317,232 H113 Q105,232 105,224 V140"
+            marker-end="url(#ar5w)"/>
+      <text class="s-label warn s-mid" x="215" y="204">red: stop, fix, push again</text>
+      <text class="s-cap s-mid" x="215" y="258">the line stops for everyone, not just them</text>
+    </svg>
+    <figcaption>Red is normal. It is the machine finding the problem before a user does.</figcaption>
+  </figure>
+
+  <div class="cols two">
+    <ul class="plain" style="margin:0">
+      <li><b>CI</b> runs on every push and every pull request, not on your laptop.</li>
+      <li>Green means allowed to merge. Red means blocked.</li>
+    </ul>
+    <ul class="plain" style="margin:0">
+      <li><b>CD</b> takes green main and deploys it, the same way every time.</li>
+      <li>It replaces "it worked on my machine" with evidence.</li>
+    </ul>
+  </div>
+
+  <aside class="notes">
+    <p class="time">8 min</p>
+    <p>Ask how often something worked for them and then failed for the person
+       next to them. That gap is what CI closes, because a clean room is not your
+       desk.</p>
+    <p>Two rules. Nothing merges red, and the deploy path is identical every time.
+       Hand made deploy steps are where factories quietly stop shipping.</p>
+    <p>If they take one operational habit away, make it this: a red build is the
+       highest priority ticket in the building.</p>
+  </aside>
+</section>
+
+<!-- 13 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="repo" data-title="The repository">
+  <p class="eyebrow">The floor</p>
+  <h2>Everything lives in the repository</h2>
+  <p class="lede">The repository holds more than code: the decisions, the checks,
+     and the code itself.</p>
+
+  <div class="cols two">
+    <div>
+      <pre><b>project/</b>
+├── <span class="c">BRIEF.md</span>        what you asked for
+├── <span class="c">SPEC.md</span>         what it will do
+├── docs/adr/      <span class="c">why decisions were made</span>
+├── README.md      <span class="c">how to run it</span>
+├── .github/       <span class="c">the robot's instructions</span>
+├── tests/         <span class="c">the checks</span>
+└── src/           <span class="c">the code</span>
+<span class="c">issues + milestones live beside this, numbered</span></pre>
+    </div>
+    <div>
+      <ul class="plain">
+        <li>A decision with no recorded reason gets argued again every month.</li>
+        <li>The next agent reads it cold, with no memory of your meeting.</li>
+        <li>Code without its brief, spec and checks is just a folder of files.</li>
+      </ul>
+      <p class="note tip" style="margin-top:.9rem"><strong>Write for the next agent.</strong>
+         It is a new colleague every morning: fast, literal, and ignorant of
+         everything you said out loud.</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    <p class="time">5 min</p>
+    <p>This is the habit that decides whether the workflow survives a real week.
+       Everything else can be improvised. This cannot.</p>
+    <p>Name the ADR folder. Architecture decision record sounds grand, but it is
+       one page saying what we chose, what we rejected and why. Six months later
+       it is the only thing that ends the same argument.</p>
+  </aside>
+</section>
+
+<!-- 14 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="who" data-title="Who does what">
+  <p class="eyebrow">The roles</p>
+  <h2>What the agent does, and what you do</h2>
+
+  <table style="margin-top:1rem">
+    <thead>
+      <tr><th style="width:50%">The agent</th><th>You</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Asks the grilling questions</td><td>Answers them, and decides the trade-offs</td></tr>
+      <tr><td>Writes the spec draft, the tickets, the code</td><td>Signs the spec, cuts scope, says no</td></tr>
+      <tr><td>Runs the red/green loop</td><td>Asks for the failing check as proof</td></tr>
+      <tr><td>Commits, pushes, reads CI output</td><td>Reviews the summary and the evidence</td></tr>
+      <tr><td>Never gets tired, never gets bored</td><td>Notices when the thing being built is wrong</td></tr>
+    </tbody>
+  </table>
+
+  <p class="pull">Your hours go to stations <b>1, 2, 3 and 6</b>.<br>The agent's hours go to 4 and 5.</p>
+
+  <p class="note" style="margin-top:1.4rem"><strong>The harness is a preference, not the method.</strong>
+     opencode is what I use; any agent that can read a repository, run commands and
+     be interrupted will do. The order of the stations is the part that cannot vary.</p>
+
+  <aside class="notes">
+    <p class="time">4 min</p>
+    <p>This slide stops both failures at once: expecting the agent to know what you
+       want, and expecting yourself to review every line of code.</p>
+    <p>Harness choice is free. The stations are the method, the tool is a
+       preference, and the order is what holds it together.</p>
+  </aside>
+</section>
+
+<!-- 15 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="fails" data-title="Failure modes">
+  <p class="eyebrow">What goes wrong</p>
+  <h2>Five ways factories stall</h2>
+
+  <table style="margin-top:.8rem">
+    <thead><tr><th style="width:38%">Symptom</th><th>Cause and fix</th></tr></thead>
+    <tbody>
+      <tr><td>Confident work on the wrong thing</td><td>No spec, no sign-off. Gate at station 3, every time.</td></tr>
+      <tr><td>A ticket that never ends</td><td>Too big. Slice by behaviour until it fits a day.</td></tr>
+      <tr><td>All checks pass, product broken</td><td>Checks written after the code. Write them red first.</td></tr>
+      <tr><td>Works for the agent, not for users</td><td>No clean room. CI on every push, not on one laptop.</td></tr>
+      <tr><td>Nothing ever ships</td><td>Main is never green, or there is no deploy path. Deploy weekly, even when it is small.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note warn" style="margin-top:1rem"><strong>The one that hides best:</strong>
+     an agent that says done and means "I wrote something". Ask for evidence, not
+     the claim. Evidence is a check that failed and then passed, a green pipeline,
+     and a running thing you can open.</p>
+
+  <aside class="notes">
+    <p class="time">5 min</p>
+    <p>Ask which of the five they recognise from their own IT work. Usually all
+       five, which is the point: agents amplify an undisciplined process instead of
+       fixing it.</p>
+    <p>The third row deserves the emphasis. It is the failure that looks like
+       success, and the red step is the only cure.</p>
+  </aside>
+</section>
+
+<!-- 16 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="first" data-title="Your first loop">
+  <p class="eyebrow">Exercise</p>
+  <h2>Your first lap</h2>
+  <p class="lede">Pick something you can show a colleague in one week. That size is
+     the point: it finishes.</p>
+
+  <div class="cols two">
+    <ol>
+      <li>Write the brief. Twenty minutes, no editing.</li>
+      <li>Ask for the grilling. Answer everything.</li>
+      <li>Read the spec out loud. Sign it.</li>
+      <li>Cut tickets. Take the smallest one that shows something.</li>
+    </ol>
+    <ol start="5">
+      <li>Red, then green. Ask to see the red.</li>
+      <li>Push. Watch CI go green.</li>
+      <li>Merge, deploy, open it in a browser.</li>
+      <li>Show one person. Then take the next ticket.</li>
+    </ol>
+  </div>
+
+  <aside class="notes">
+    <p class="time">10 min, or the rest of the session, live</p>
+    <p>Best use of this slide: do it with the room. Ask for one volunteer's idea,
+       write the brief together, run the grilling live and stop at the spec. They
+       will have watched the front half of the factory in twenty minutes.</p>
+    <p>A worked example to point at: the club's own MUD. One grilled spec
+       (<code>SPEC.md</code>), milestone <b>M1</b>, and 28 tickets that each carry
+       a red step and a green step. That is this slide, already done.</p>
+    <p>If they do it alone afterwards: one week, one visible thing, deployed
+       somewhere you can open it.</p>
+  </aside>
+</section>
+
+<!-- 17 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="glossary" data-title="Glossary">
+  <p class="eyebrow">Keep this</p>
+  <h2>The nouns</h2>
+
+  <div class="cols three">
+    <dl style="margin:0">
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">repository</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">The project folder with its whole history attached.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">commit</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">A snapshot plus a reason.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">branch</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">A safe copy for one change.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">main</dt>
+      <dd style="margin:0;color:var(--ink-soft);font-size:.92rem">The line that is real. What deploys comes from here.</dd>
+    </dl>
+    <dl style="margin:0">
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">pull request</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">A proposed change, with the discussion attached.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">issue</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">A ticket: the ask, the talk, the close condition.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">milestone</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">A group of issues that ship together.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">CI / CD</dt>
+      <dd style="margin:0;color:var(--ink-soft);font-size:.92rem">Robots that check every change, then ship it.</dd>
+    </dl>
+    <dl style="margin:0">
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">spec</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">The one page contract. Behaviours and exclusions.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">ticket</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">One behaviour, one check, one finish line.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">red / green</dt>
+      <dd style="margin:0 0 .9rem;color:var(--ink-soft);font-size:.92rem">See the check fail, then make it pass.</dd>
+      <dt style="color:var(--ink);font-family:var(--sans);font-weight:600">agent</dt>
+      <dd style="margin:0;color:var(--ink-soft);font-size:.92rem">The worker: fast, literal, no memory of yesterday.</dd>
+    </dl>
+  </div>
+
+  <aside class="notes">
+    <p class="time">2 min</p>
+    <p>Do not read this out. Tell them to photograph it. It is the sheet they will
+       want in the first conversation back at their desk.</p>
+  </aside>
+</section>
+
+<!-- 18 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="close" data-title="Close">
+  <p class="eyebrow">The whole thing</p>
+  <h2>Six stations. One loop.</h2>
+
+  <div class="strip">
+    <div>01 BRIEF<span>everything you know</span></div>
+    <div>02 GRILL<span>it asks, you answer</span></div>
+    <div>03 SPEC<span>one page, signed</span></div>
+    <div>04 TICKETS<span>small and testable</span></div>
+    <div>05 RED/GREEN<span>check before code</span></div>
+    <div>06 REVIEW<span>evidence, then merge</span></div>
+  </div>
+
+  <p class="pull">If it is not written down, it is not decided.<br>
+     If it is not checked, it is not done.<br>
+     If it is not deployed, it is not real.</p>
+
+  <p class="note tip" style="margin-top:1.6rem"><strong>Start Monday:</strong> one idea,
+     one brief, one grilling, one ticket, one deploy. The line gets faster every
+     lap.</p>
+
+  <aside class="notes">
+    <p class="time">3 min</p>
+    <p>Close on the three lines. They are the course compressed, and the only thing
+       worth hearing repeated back to you.</p>
+    <p>Then hand out the printed deck. It prints one section per page, with these
+       notes on it.</p>
+  </aside>
+</section>
+
+</main>
+
+<div class="hud">
+  <div class="now"><b id="count">01</b> / <span id="total">18</span> &nbsp;<span id="title"></span></div>
+  <div><span class="hint-notes"><kbd>S</kbd> notes</span> &nbsp; <kbd>←</kbd><kbd>→</kbd> stations &nbsp; <kbd>F</kbd> full screen</div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var bar = document.getElementById('progress');
+  var count = document.getElementById('count');
+  var total = document.getElementById('total');
+  var title = document.getElementById('title');
+  var current = 0;
+
+  total.textContent = String(slides.length).padStart(2, '0');
+
+  function pad(n) { return String(n + 1).padStart(2, '0'); }
+
+  function paint() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+
+    // current = the section occupying the most of the viewport
+    var best = 0, bestArea = -1;
+    slides.forEach(function (s, i) {
+      var r = s.getBoundingClientRect();
+      var top = Math.max(r.top, 0);
+      var bottom = Math.min(r.bottom, window.innerHeight);
+      var area = bottom - top;
+      if (area > bestArea) { bestArea = area; best = i; }
+    });
+    if (best !== current) {
+      current = best;
+      count.textContent = pad(current);
+      title.textContent = slides[current].dataset.title || '';
+    }
+  }
+
+  function go(i) {
+    var s = slides[Math.max(0, Math.min(slides.length - 1, i))];
+    if (!s) return;
+    var top = s.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  function atEdge() {
+    var i = current;
+    var r = slides[i].getBoundingClientRect();
+    // if the section is taller than the screen, arrows move inside it first
+    if (r.height > window.innerHeight + 40) {
+      var remaining = r.top + r.height - window.innerHeight;
+      if (remaining > 40 && r.top < -20) return 'inside-down';
+      if (r.top > 20 && r.top < window.innerHeight - 40) return 'inside-up';
+    }
+    return null;
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key;
+
+    if (k === 's' || k === 'S') {
+      document.body.classList.toggle('notes-on');
+      e.preventDefault();
+      return;
+    }
+    if (k === 'f' || k === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+      e.preventDefault();
+      return;
+    }
+    if (k === 'Home') { go(0); e.preventDefault(); return; }
+    if (k === 'End') { go(slides.length - 1); e.preventDefault(); return; }
+
+    var next = (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || k === 'j' || k === ' ');
+    var prev = (k === 'ArrowLeft'  || k === 'ArrowUp'   || k === 'PageUp'   || k === 'k');
+
+    if (next) {
+      e.preventDefault();
+      if (atEdge() === 'inside-down') { window.scrollBy({ top: 400, behavior: 'smooth' }); return; }
+      go(current + 1);
+    } else if (prev) {
+      e.preventDefault();
+      if (atEdge() === 'inside-up') { window.scrollBy({ top: -400, behavior: 'smooth' }); return; }
+      go(current - 1);
+    }
+  });
+
+  window.addEventListener('scroll', paint, { passive: true });
+  window.addEventListener('resize', paint);
+  paint();
+})();
+</script>
+</body>
+</html>

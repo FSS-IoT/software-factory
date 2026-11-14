@@ -1,0 +1,404 @@
+/* ==========================================================================
+   The Software Factory: lecture deck
+   Scrolling one-page outline. Tokyo Night tokens copied from
+   /usr/share/omarchy/themes/tokyo-night/colors.toml so the deck cannot drift
+   from the desktop it is presented on.
+
+   Reading rules: bullets short, one idea per section, diagrams carry the
+   explanation. Speaker notes are hidden until you press S.
+   ========================================================================== */
+
+:root {
+  --desktop:    #13141c;
+  --paper:      #1a1b26;
+  --paper-sunk: #0e0e14;
+  --paper-lift: #24283b;
+
+  --ink:        #c0caf5;
+  --ink-soft:   #a9b1d6;
+  --ink-faint:  #808cb4;
+
+  --rule:       #292e42;
+  --rule-firm:  #414868;
+
+  --accent:     #7aa2f7;
+  --accent-dim: #1b2540;
+  --ok:         #9ece6a;
+  --ok-dim:     #1c2a1a;
+  --warn:       #f7768e;
+  --warn-dim:   #38212c;
+  --gui:        #449dab;
+  --gui-dim:    #102730;
+  --term:       #ad8ee6;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Charter,
+           "Source Serif Pro", Georgia, serif;
+  --sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter,
+           "Helvetica Neue", sans-serif;
+  --mono:  ui-monospace, "JetBrains Mono", "SF Mono", "Cascadia Code",
+           Menlo, Consolas, monospace;
+
+  --measure: 44rem;
+  --wide:    68rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(120% 90% at 50% 0%, #171926 0%, var(--desktop) 55%);
+  background-color: var(--desktop);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Chrome -------------------------------------------------------------- */
+
+#progress {
+  position: fixed; inset: 0 auto auto 0;
+  height: 2px; width: 0;
+  background: var(--accent);
+  z-index: 30;
+  transition: width .08s linear;
+}
+
+.hud {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem;
+  padding: .5rem 1.1rem calc(.5rem + env(safe-area-inset-bottom));
+  font-family: var(--sans); font-size: .72rem;
+  letter-spacing: .06em; color: var(--ink-faint);
+  background: linear-gradient(to top, rgba(14,14,20,.92), rgba(14,14,20,0));
+  pointer-events: none;
+  z-index: 25;
+}
+.hud .now { color: var(--ink-soft); }
+.hud .now b { color: var(--accent); font-weight: 700; }
+.hud kbd {
+  font-family: var(--mono); font-size: .72rem;
+  border: 1px solid var(--rule-firm); border-bottom-width: 2px;
+  padding: 0 .3rem; color: var(--ink-soft); background: var(--paper-sunk);
+}
+body.notes-on .hint-notes { color: var(--ok); }
+
+/* --- Slides -------------------------------------------------------------- */
+
+.deck { max-width: var(--wide); margin: 0 auto; padding: 0 1.6rem; }
+
+.slide {
+  min-height: 90vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 7vh 0;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 0;
+}
+.slide:last-of-type { border-bottom: 0; }
+.slide.hero { min-height: 100vh; }
+
+.eyebrow {
+  font-family: var(--sans); font-weight: 700;
+  font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+.eyebrow .station { color: var(--ink-faint); }
+.eyebrow .station::after { content: " · "; }
+
+h1, h2, h3 { font-family: var(--sans); font-weight: 600; text-wrap: balance; }
+
+h1 {
+  font-size: clamp(2.4rem, 6.4vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  margin: 0 0 1rem;
+}
+h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+  line-height: 1.12; letter-spacing: -.015em;
+  margin: 0 0 .7rem;
+}
+h3 {
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .14em;
+  color: var(--ink-faint); font-weight: 700;
+  margin: 1.8rem 0 .5rem;
+}
+
+.lede {
+  font-size: clamp(1.02rem, 1.5vw, 1.25rem);
+  color: var(--ink-soft);
+  max-width: var(--measure);
+  margin: 0 0 1.6rem;
+}
+.lede strong { color: var(--ink); font-weight: 600; }
+
+p { max-width: var(--measure); }
+em.q { font-style: italic; color: var(--ink); }
+
+/* --- Lists --------------------------------------------------------------- */
+
+ul, ol { margin: 0 0 1.2rem; padding-left: 1.15em; max-width: var(--measure); }
+li {
+  font-size: clamp(1rem, 1.32vw, 1.2rem);
+  line-height: 1.45;
+  margin: .42em 0;
+  padding-left: .15em;
+}
+li::marker { color: var(--accent); }
+ol li::marker { font-family: var(--mono); font-size: .85em; color: var(--ink-faint); }
+li b, li strong { color: #fff; font-weight: 600; }
+li ul { margin: .35em 0 .2em; }
+li ul li { font-size: .95em; color: var(--ink-soft); }
+ul.plain { list-style: none; padding-left: 0; }
+ul.plain li { display: flex; gap: .6rem; align-items: flex-start; }
+/* A drawn rule rather than a dash glyph: same marker, and no punctuation
+   character sitting in the text for a screenshot or a copy to pick up. */
+ul.plain li::before {
+  content: "";
+  flex: none;
+  width: .85rem;
+  height: 2px;
+  margin-top: .72em;
+  background: var(--rule-firm);
+}
+
+/* --- Blocks -------------------------------------------------------------- */
+
+.tile {
+  border: 2px solid rgba(89,89,89,.55);
+  background: var(--paper);
+  padding: 1rem 1.15rem;
+}
+.tile.warn { border-color: var(--warn); background: var(--warn-dim); }
+.tile.ok   { border-color: var(--ok);   background: var(--ok-dim); }
+.tile.accent { border-color: var(--accent); background: var(--accent-dim); }
+.tile h4 {
+  font-family: var(--sans); font-size: .72rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  margin: 0 0 .55rem; color: var(--ink-faint);
+}
+.tile.warn h4 { color: var(--warn); }
+.tile.ok h4 { color: var(--ok); }
+.tile.accent h4 { color: var(--accent); }
+.tile p, .tile li { font-size: .98rem; }
+.tile p:last-child, .tile ul:last-child, .tile ol:last-child { margin-bottom: 0; }
+.tile ul { padding-left: 1.05em; }
+
+.cols { display: grid; gap: 1.6rem; align-items: start; }
+.cols.two { grid-template-columns: 1fr 1fr; }
+.cols.aside { grid-template-columns: 1.15fr .85fr; }
+.cols.three { grid-template-columns: repeat(3, 1fr); }
+
+.pull {
+  font-family: var(--sans);
+  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+  line-height: 1.3; font-weight: 500;
+  max-width: 40rem; margin: 1.4rem 0 0;
+  color: var(--ink);
+}
+.pull b { color: var(--accent); font-weight: 600; }
+
+pre {
+  font-family: var(--mono); font-size: .82rem; line-height: 1.55;
+  background: var(--paper-sunk);
+  border-left: 3px solid var(--gui);
+  color: var(--ink-soft);
+  padding: .9rem 1rem;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+pre b { color: var(--ink); font-weight: 500; }
+pre .c { color: var(--ink-faint); }
+code {
+  font-family: var(--mono); font-size: .88em;
+  background: var(--paper-sunk); color: var(--ink);
+  padding: .08em .3em; border: 1px solid var(--rule);
+}
+
+table { width: 100%; border-collapse: collapse; margin: 0 0 1rem; }
+th {
+  font-family: var(--sans); font-size: .7rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint);
+  text-align: left; padding: 0 .9rem .5rem 0;
+  border-bottom: 1px solid var(--rule-firm);
+}
+td {
+  padding: .62rem .9rem .62rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  font-size: .96rem;
+  color: var(--ink-soft);
+}
+td:first-child { color: var(--ink); }
+td b { color: #fff; font-weight: 600; }
+td.warn { color: var(--warn); }
+
+.note {
+  border-left: 3px solid var(--rule-firm);
+  background: var(--paper-sunk);
+  padding: .7rem .95rem;
+  font-size: .92rem; color: var(--ink-soft);
+  max-width: var(--measure);
+}
+.note strong { color: var(--ink); }
+.note.tip { border-left-color: var(--accent); background: var(--accent-dim); }
+.note.warn { border-left-color: var(--warn); background: var(--warn-dim); }
+
+/* --- Diagrams ------------------------------------------------------------ */
+
+.figure { margin: 1.4rem 0 1.6rem; overflow-x: auto; }
+.figure svg { display: block; width: 100%; height: auto; min-width: 620px; }
+
+/* The anchor diagram gets more of the projector than the text column. The
+   negative margin centres it on the slide; the viewport clamp keeps it from
+   pushing a scrollbar onto a narrow screen. */
+.figure.wide {
+  --w: min(80rem, calc(100vw - 3rem));
+  width: var(--w);
+  margin-left: calc(50% - var(--w) / 2);
+  margin-right: calc(50% - var(--w) / 2);
+}
+.figure figcaption {
+  font-family: var(--sans); font-size: .74rem; letter-spacing: .04em;
+  color: var(--ink-faint); margin-top: .7rem;
+  min-width: 620px;
+}
+
+.s-box      { fill: var(--paper-lift); stroke: var(--rule-firm); stroke-width: 1.5; }
+.s-box-accent { fill: var(--accent-dim); stroke: var(--accent); stroke-width: 1.5; }
+.s-box-warn { fill: var(--warn-dim); stroke: var(--warn); stroke-width: 1.5; }
+.s-box-ok   { fill: var(--ok-dim); stroke: var(--ok); stroke-width: 1.5; }
+.s-line     { stroke: var(--rule-firm); stroke-width: 1.5; fill: none; }
+.s-line-accent { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+.s-line-warn { stroke: var(--warn); stroke-width: 1.5; fill: none; }
+.s-dash     { stroke-dasharray: 7 7; }
+.s-dot      { fill: var(--accent); }
+.s-num      { fill: var(--accent); font: 700 13px var(--sans); letter-spacing: .12em; }
+.s-title    { fill: var(--ink); font: 600 15.5px var(--sans); letter-spacing: .07em; }
+.s-cap      { fill: var(--ink-faint); font: 12.5px var(--sans); }
+.s-label    { fill: var(--ink-soft); font: 700 11.5px var(--sans); letter-spacing: .16em; }
+.s-label.warn { fill: var(--warn); }
+.s-label.ok   { fill: var(--ok); }
+.s-mid      { text-anchor: middle; }
+.s-end      { text-anchor: end; }
+
+/* --- Speaker notes ------------------------------------------------------- */
+
+.notes {
+  display: none;
+  margin: 1.6rem 0 0;
+  padding: .9rem 1.1rem;
+  max-width: 46rem;
+  background: #10111a;
+  border: 1px dashed var(--rule-firm);
+  border-left: 3px solid var(--ok);
+  font-family: var(--sans);
+  font-size: .88rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.notes::before {
+  content: "SAY";
+  display: block;
+  font-size: .62rem; font-weight: 700; letter-spacing: .2em;
+  color: var(--ok); margin-bottom: .4rem;
+}
+.notes p { margin: 0 0 .6rem; max-width: none; }
+.notes p:last-child { margin: 0; }
+.notes b { color: var(--ink); }
+.notes .time { color: var(--ink-faint); font-size: .78rem; }
+body.notes-on .notes { display: block; }
+
+/* --- Hero ---------------------------------------------------------------- */
+
+.hero .kicker {
+  font-family: var(--sans); font-size: .72rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 1.4rem;
+}
+.hero .sub {
+  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+  color: var(--ink-soft); max-width: 34rem; margin: 0 0 2.2rem;
+}
+.hero .meta {
+  font-family: var(--mono); font-size: .78rem; color: var(--ink-faint);
+  display: flex; flex-wrap: wrap; gap: 1.4rem;
+}
+.hero .meta span::before { content: "▸ "; color: var(--rule-firm); }
+.rule-accent {
+  width: 3.5rem; height: 3px; background: var(--accent);
+  margin: 0 0 1.6rem;
+}
+
+/* --- Station grid (close slide) ----------------------------------------- */
+
+.strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin: 1.6rem 0 1rem; }
+.strip div {
+  background: var(--paper-lift);
+  border-top: 2px solid var(--accent);
+  padding: .7rem .6rem;
+  font-family: var(--sans); font-size: .72rem; font-weight: 700;
+  letter-spacing: .1em; color: var(--ink);
+}
+.strip div span { display: block; font-weight: 400; letter-spacing: 0; color: var(--ink-faint); font-size: .68rem; margin-top: .3rem; }
+
+/* --- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 56rem) {
+  .cols.two, .cols.aside, .cols.three { grid-template-columns: 1fr; }
+  .strip { grid-template-columns: repeat(3, 1fr); }
+  .slide { min-height: 0; padding: 4.5rem 0; }
+  .slide.hero { min-height: 92vh; }
+  .figure svg, .figure figcaption { min-width: 0; }
+}
+@media (max-width: 34rem) {
+  body { font-size: 17px; }
+  .strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- Print: the handout -------------------------------------------------- */
+
+@media print {
+  :root {
+    --desktop: #fff; --paper: #fff; --paper-sunk: #f4f4f6; --paper-lift: #f0f0f3;
+    --ink: #111; --ink-soft: #333; --ink-faint: #666;
+    --rule: #ddd; --rule-firm: #bbb;
+    --accent: #1c4bb0; --accent-dim: #eef2fb;
+    --ok: #1a7f37; --ok-dim: #eef8f0;
+    --warn: #b3213b; --warn-dim: #fbeeef;
+  }
+  body { background: #fff; color: #111; font-size: 10.5pt; }
+  .hud, #progress { display: none; }
+  .slide { min-height: 0; padding: 0 0 1.2rem; border-bottom: 0; page-break-after: always; }
+  .slide:last-of-type { page-break-after: auto; }
+  .notes {
+    display: block;
+    background: #f6f6f8;
+    border: 1px solid #ddd;
+    border-left: 3px solid #1a7f37;
+    color: #333;
+  }
+  .notes::before { color: #1a7f37; }
+  .notes b { color: #000; }
+  /* The dark theme sets these to white for contrast on a dark surface; on
+     paper they would be invisible. */
+  li b, li strong, td b, .pull b { color: #000; }
+  /* The list marker is a painted bar, and most printers drop backgrounds by
+     default. Force it to survive, or every bullet-list item loses its mark. */
+  ul.plain li::before {
+    background: #888;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  h1 { font-size: 30pt; } h2 { font-size: 18pt; }
+  .figure svg { min-width: 0; }
+  pre { border: 1px solid #ddd; border-left: 3px solid #1c4bb0; }
+}
