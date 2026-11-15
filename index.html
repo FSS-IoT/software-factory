@@ -20,7 +20,7 @@
   <h1>The Software<br>Factory</h1>
   <p class="sub">You bring the idea and the judgment. Agents bring the labour.</p>
   <div class="meta">
-    <span>about 2 hours</span>
+    <span>about 2h15</span>
     <span>no programming required</span>
     <span>one live exercise</span>
   </div>
@@ -812,6 +812,115 @@ until you can write the spec.</pre>
 </section>
 
 <!-- 15 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="vault" data-title="The vault">
+  <p class="eyebrow">The memory</p>
+  <h2>The vault is the agent's memory</h2>
+  <p class="lede">One folder of markdown. The agent reads it at the start of every
+     session and writes to it as it learns.</p>
+
+  <div class="cols two">
+    <div>
+      <pre><b>Vault/</b>
+├── <span class="c">AGENTS.md</span>          read this first
+├── <span class="c">Home.md</span>            the index
+├── <span class="c">projects/</span>          one page per project
+├── <span class="c">user/</span>              how you like to work
+├── <span class="c">system/</span>            this machine
+└── <span class="c">software-factory/</span>  the method</pre>
+    </div>
+    <div>
+      <ul class="plain" style="margin:0">
+        <li>One page owns each fact. Everything else links to it.</li>
+        <li>The agent writes without being asked. You correct it, and the
+            correction is saved.</li>
+        <li>Two preference files: how the work runs, and how you like to work.</li>
+        <li>Ask for a vault on a topic and the pages become the database for the
+            next project on it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="note tip" style="margin-top:1.4rem"><strong>You do not manage it.</strong>
+     You read it and you correct it. If an agent has to be told to save something,
+     the pointer or the contract is missing.</p>
+
+  <aside class="notes">
+    <p class="time">5 min</p>
+    <p>The problem first: every session starts with amnesia. The agent does not
+       remember your machine, your taste, or last week's decision. A chat history
+       is not memory, because nobody reads it.</p>
+    <p>The fix is a folder. One page per subject, one index, and a contract that
+       says where facts go. It is the same idea as the repository slide: the repo
+       remembers the project, the vault remembers you.</p>
+    <p>Point at the two preferences files if they ask. The factory's own is how
+       the work runs; the user one is tone, tools, what they are learning. Same
+       rule, two owners.</p>
+    <p>The research case is worth one sentence: point an agent at a subject, let
+       it read and write pages for a week, and the vault becomes the database the
+       next project on that subject starts from. That is not a feature, it is the
+       same loop pointed at reading instead of building.</p>
+    <p>Say the last line plainly: they never have to say "remember this". If they
+       do have to, something is misconfigured.</p>
+  </aside>
+</section>
+
+<!-- 16 ─────────────────────────────────────────────────────────────────── -->
+<section class="slide" id="install" data-title="Setup">
+  <p class="eyebrow">Setup</p>
+  <h2>Twenty minutes, once</h2>
+  <p class="lede">You do not configure anything. The agent runs the setup skill;
+     you answer questions and approve the writes.</p>
+
+  <div class="cols two">
+    <div>
+      <h3>What you do</h3>
+      <ol>
+        <li>Get the repo: clone it, or download and unzip. Any folder.</li>
+        <li>Say one sentence: "clone the repo and set up the software factory".</li>
+        <li>Answer three questions: a vault or not, where it lives, which file
+            your agent reads first.</li>
+        <li>It proves the install from another folder, then hands over. You never
+            run it again.</li>
+      </ol>
+    </div>
+    <div>
+      <div class="tile">
+        <h4>What it installs</h4>
+        <ul>
+          <li>The vault, if you asked for one.</li>
+          <li>The factory, as a subvault of it, or standalone.</li>
+          <li>One pointer line in your harness.</li>
+          <li>Nothing else: no packages, no accounts, no service.</li>
+        </ul>
+      </div>
+      <p class="note tip" style="margin-top:1rem"><strong>The proof is the step people
+         skip.</strong> A new session, in a folder with no project, has to find the
+         vault on its own.</p>
+    </div>
+  </div>
+
+  <p class="pull">Without it, every session starts from zero.</p>
+  <p class="lede" style="margin:.7rem 0 0">Changes get written without a spec, a
+     check, or a way to ship.</p>
+
+  <aside class="notes">
+    <p class="time">15 min, live</p>
+    <p>Do this with the room rather than describing it. Show the repo URL, clone
+       it in front of them, and read the setup skill's mode list aloud for ten
+       seconds: new vault, existing vault, standalone. That list is the only
+       decision they make.</p>
+    <p>Then answer the three questions as a student would, and let them watch the
+       pointer get written. Open the harness's instruction file and show the one
+       line. That line is the install; everything else is folders.</p>
+    <p>Finish with the proof: a fresh session in a folder with no project, asking
+       where the vault is. If it cannot answer, stop the class and fix it, because
+       everyone else's will fail the same way.</p>
+    <p>The pull line is the honest pitch: what they get is not a tool, it is the
+       absence of starting from zero every time.</p>
+  </aside>
+</section>
+
+<!-- 17 ─────────────────────────────────────────────────────────────────── -->
 <section class="slide" id="who" data-title="Who does what">
   <p class="eyebrow">The roles</p>
   <h2>What the agent does, and what you do</h2>
@@ -844,7 +953,7 @@ until you can write the spec.</pre>
   </aside>
 </section>
 
-<!-- 16 ─────────────────────────────────────────────────────────────────── -->
+<!-- 18 ─────────────────────────────────────────────────────────────────── -->
 <section class="slide" id="fails" data-title="Failure modes">
   <p class="eyebrow">What goes wrong</p>
   <h2>Five ways factories stall</h2>
@@ -875,7 +984,7 @@ until you can write the spec.</pre>
   </aside>
 </section>
 
-<!-- 17 ─────────────────────────────────────────────────────────────────── -->
+<!-- 19 ─────────────────────────────────────────────────────────────────── -->
 <section class="slide" id="first" data-title="Your first loop">
   <p class="eyebrow">Exercise</p>
   <h2>Your first lap</h2>
@@ -910,7 +1019,7 @@ until you can write the spec.</pre>
   </aside>
 </section>
 
-<!-- 18 ─────────────────────────────────────────────────────────────────── -->
+<!-- 20 ─────────────────────────────────────────────────────────────────── -->
 <section class="slide" id="glossary" data-title="Glossary">
   <p class="eyebrow">Keep this</p>
   <h2>The nouns</h2>
@@ -955,7 +1064,7 @@ until you can write the spec.</pre>
   </aside>
 </section>
 
-<!-- 19 ─────────────────────────────────────────────────────────────────── -->
+<!-- 21 ─────────────────────────────────────────────────────────────────── -->
 <section class="slide" id="close" data-title="Close">
   <p class="eyebrow">The whole thing</p>
   <h2>Seven stations. One loop.</h2>

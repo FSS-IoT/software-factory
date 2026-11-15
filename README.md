@@ -45,14 +45,16 @@ light on white. That is the sheet to hand out at the end.
 | 12 | Issues and milestones: the plan and the work | 7 |
 | 13 | CI/CD: the robot inspector | 8 |
 | 14 | The repository remembers the project | 5 |
-| 15 | What the agent does, what you do | 4 |
-| 16 | Five ways factories stall | 5 |
-| 17 | Your first lap (exercise) | 10 |
-| 18 | Glossary | 2 |
-| 19 | Close: the three rules | 3 |
+| 15 | The vault: the agent's memory | 5 |
+| 16 | Setup: twenty minutes, once (live) | 15 |
+| 17 | What the agent does, what you do | 4 |
+| 18 | Five ways factories stall | 5 |
+| 19 | Your first lap (exercise) | 10 |
+| 20 | Glossary | 2 |
+| 21 | Close: the three rules | 3 |
 
-About 2 hours with the live exercise. To cut it to an hour, shorten the git and
-CI sections and run the exercise as a demo instead of hands on.
+About 2h15 with the live install and the exercise. To cut it to an hour, shorten
+the git and CI sections and run the install as a demo instead of hands on.
 
 CI/CD is optional and is the broadest topic here. Teach it after the loop works.
 It can run beside the loop, or take over the mechanical half of review (does it
