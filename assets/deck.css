@@ -412,6 +412,7 @@ body.notes-on .notes { display: block; }
 /* --- Station grid (close slide) ----------------------------------------- */
 
 .strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin: 1.6rem 0 1rem; }
+.strip.four { grid-template-columns: repeat(4, 1fr); }
 .strip div {
   background: var(--paper-lift);
   border-top: 2px solid var(--accent);
@@ -420,6 +421,12 @@ body.notes-on .notes { display: block; }
   letter-spacing: .1em; color: var(--ink);
 }
 .strip div span { display: block; font-weight: 400; letter-spacing: 0; color: var(--ink-faint); font-size: .68rem; margin-top: .3rem; }
+
+.starters {
+  font-family: var(--mono); font-size: .78rem; color: var(--ink-faint);
+  margin: 1.1rem 0 0;
+}
+.starters b { color: var(--ink-soft); font-weight: 500; }
 
 /* --- Responsive ---------------------------------------------------------- */
 

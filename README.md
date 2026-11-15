@@ -38,14 +38,14 @@ light on white. That is the sheet to hand out at the end.
 | 2 | The shift: you run the factory | 4 |
 | 3 | Setup: twenty minutes, once (live) | 15 |
 | 4 | The vault: the agent's memory | 5 |
-| 5 | The line: seven stations, one loop | 5 |
-| 6 | 01 Brief: everything you know, in one dump | 6 |
-| 7 | 02 Grilling: the adversarial interview | 10 |
-| 8 | 03 Spec: a contract you can test | 6 |
-| 9 | 04 Tickets: one behaviour, one check | 7 |
-| 10 | 05 Red/green: the check fails first | 8 |
-| 11 | 06 Review: a proposal, not a delivery | 6 |
-| 12 | 07 Ship: nothing is done until it is live | 5 |
+| 5 | The line: four stations, one loop | 5 |
+| 6 | Before the loop: the brief, one sentence | 6 |
+| 7 | Before the loop: the adversarial interview | 10 |
+| 8 | Before the loop: a spec you can test | 6 |
+| 9 | 01 Tickets: one behaviour, one check | 7 |
+| 10 | 02 Red/green: the check fails first | 8 |
+| 11 | 03 Review: a proposal, not a delivery | 6 |
+| 12 | 04 Ship: closes the milestone | 5 |
 | 13 | Git: commits, branches, pull requests | 8 |
 | 14 | Issues and milestones: the plan and the work | 7 |
 | 15 | CI/CD: the robot inspector (optional) | 8 |
@@ -63,9 +63,9 @@ CI/CD is optional and is the broadest topic here. Teach it after the loop works.
 It can run beside the loop, or take over the mechanical half of review (does it
 build, do the checks pass, did anything else break). It cannot make the judgment.
 
-Brief, grill and spec are project documents, written once. Tickets through ship
-run again on every milestone. The deck says that out loud on the line slide; it is
-the thing a room gets wrong if you skip it.
+Brief, research, grill and spec come before the loop and happen once per project.
+The four stations then run again on every milestone. The deck says that out loud on
+the line slide; it is the thing a room gets wrong if you skip it.
 
 ## Editing it
 
@@ -77,6 +77,6 @@ inline SVG, which keeps them sharp on any projector and needs no libraries.
 Speaker notes live in `<aside class="notes">` inside each section, and the first
 line is the timing.
 
-If you rewrite the story, keep the shape: seven stations, four of them need a
-person (brief, spec, review, and the yes that merges), and the loop back to the
-brief is what makes it a factory instead of a project.
+If you rewrite the story, keep the shape: four stations in the loop, a plan before
+them that is not a station, and a ship that closes the milestone. The person is
+needed at the plan and at the review.
