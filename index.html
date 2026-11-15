@@ -426,7 +426,7 @@ until you can write the spec.</pre>
 <!-- 09 ─────────────────────────────────────────────────────────────────── -->
 <section class="slide" id="tickets" data-title="Station 01 · Tickets">
   <p class="eyebrow"><span class="station">Station 01</span>Tickets</p>
-  <h2>One ticket, one check, one commit</h2>
+  <h2>One ticket, one check</h2>
   <p class="lede">Cut the spec into slices. Each slice must finish, and you must be
      able to check it.</p>
 
@@ -439,7 +439,7 @@ until you can write the spec.</pre>
     <div class="tile ok">
       <h4>Right size, finishes today</h4>
       <p>"A wrong password shows an error and clears the field."</p>
-      <p style="color:var(--ink-faint);font-size:.85rem">One behaviour, one check, one commit, one closed ticket.</p>
+      <p style="color:var(--ink-faint);font-size:.85rem">One behaviour, one check, one closed ticket.</p>
     </div>
   </div>
 
@@ -519,7 +519,8 @@ until you can write the spec.</pre>
       <li><b>Green</b> proves the change did what the ticket asked.</li>
     </ul>
     <ul class="plain" style="margin:0">
-      <li>Commit at green, so every commit works.</li>
+      <li>Two commits: the failing check, then the code.</li>
+      <li>The red commit is allowed to be red. It stays off main.</li>
       <li>The agent runs the loop. You read the result.</li>
     </ul>
   </div>
@@ -532,6 +533,10 @@ until you can write the spec.</pre>
        that always passes. Red first catches it.</p>
     <p>Do not teach them to write tests. Teach them to ask for proof: show me the
        check failing before you fix it. That sentence is worth the whole station.</p>
+    <p>Two commits, not one. The red commit is the proof, and a reviewer can open it
+       and run it. If that check turns out to be fake, the ticket goes back and the
+       pair is rebuilt from the commit before red. Keep the code, throw away the
+       checks.</p>
   </aside>
 </section>
 
@@ -547,7 +552,7 @@ until you can write the spec.</pre>
       <ul class="plain">
         <li>What did it change, in plain language?</li>
         <li>What did it leave out that the ticket asked for?</li>
-        <li>Where is the check that failed first?</li>
+        <li>Open the red commit. Does the check fail there?</li>
         <li>What did this break that used to work?</li>
       </ul>
     </div>
@@ -568,6 +573,8 @@ until you can write the spec.</pre>
     <p>You can review without reading code. Read the summary, the ticket and the
        evidence. Then ask what was left out. That question finds most of the
        problems.</p>
+    <p>Ask for the red commit and run the check there. If it passes, the check was
+       fake, and the ticket goes back. The pair gets rebuilt, and the code is kept.</p>
     <p>The second agent is not ceremony. The author is kind to its own work. A fresh
        one is not.</p>
     <p>If the project has CI, CI does the mechanical checks. This station is still the
