@@ -500,6 +500,9 @@ until you can write the spec.</pre>
     <p>Non-programmers can review. They cannot read the code, but they can read the
        summary, the ticket and the evidence, and they can ask what was left out.
        That question finds most of the problems.</p>
+    <p>If the project has CI, it does the mechanical checks: does it build, do the
+       tests pass, did anything else break. This station is still the judgment, and
+       judgment is the part CI cannot do.</p>
     <p>The reviewer agent is not ceremony. The author is biased toward its own
        work, and a second one is not.</p>
   </aside>
@@ -548,6 +551,9 @@ until you can write the spec.</pre>
        four lines down is that the next person does not have to remember.</p>
     <p>For a class project with no server, the honest version is: push, and say
        plainly that it is not deployed. Do not let them call a push a release.</p>
+    <p>CI is optional here. If the project has it, the checks run for you and a red
+       pipeline stops the ship. If it does not, you run the same checks by hand
+       before you deploy and say that you did.</p>
   </aside>
 </section>
 
@@ -680,10 +686,15 @@ until you can write the spec.</pre>
 
 <!-- 13 ─────────────────────────────────────────────────────────────────── -->
 <section class="slide" id="ci" data-title="CI / CD">
-  <p class="eyebrow">The inspector</p>
+  <p class="eyebrow">Optional machinery</p>
   <h2>A robot checks every change</h2>
   <p class="lede">CI is a fresh machine that builds the project and runs every check,
      every time. Nobody argues with the robot.</p>
+
+  <p class="note tip" style="margin-bottom:1.4rem"><strong>Optional, and a topic of its own.</strong>
+     Bring it in once the loop already works. It can run beside the loop, or take over
+     the mechanical half of review: does it build, do the checks pass, did anything
+     else break. It cannot tell you the thing is worth building.</p>
 
   <figure class="figure">
     <svg viewBox="0 0 900 300" role="img" aria-label="Pipeline: push, checks, merge, deploy. A red dashed path goes from failed checks back to push, labelled stop, fix, push again.">
@@ -740,11 +751,18 @@ until you can write the spec.</pre>
 
   <aside class="notes">
     <p class="time">8 min</p>
+    <p>Say the quiet part first: this is optional, and it is the broadest topic in
+       the deck. Runners, secrets, environments, caching, matrix builds. Nobody
+       needs it to run the loop in this room.</p>
+    <p>Where it fits: it can sit beside the loop and check every push, or it can
+       replace the mechanical half of review for a project that has it. It never
+       replaces the judgment, which is whether the thing should exist.</p>
     <p>Ask how often something worked for them and then failed for the person
        next to them. That gap is what CI closes, because a clean room is not your
        desk.</p>
-    <p>Two rules. Nothing merges red, and the deploy path is identical every time.
-       Hand made deploy steps are where factories quietly stop shipping.</p>
+    <p>Two rules if they adopt it. Nothing merges red, and the deploy path is
+       identical every time. Hand made deploy steps are where factories quietly
+       stop shipping.</p>
     <p>If they take one operational habit away, make it this: a red build is the
        highest priority ticket in the building.</p>
   </aside>

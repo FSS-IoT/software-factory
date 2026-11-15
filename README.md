@@ -54,6 +54,10 @@ light on white. That is the sheet to hand out at the end.
 About 2 hours with the live exercise. To cut it to an hour, shorten the git and
 CI sections and run the exercise as a demo instead of hands on.
 
+CI/CD is optional and is the broadest topic here. Teach it after the loop works.
+It can run beside the loop, or take over the mechanical half of review (does it
+build, do the checks pass, did anything else break). It cannot make the judgment.
+
 Brief, grill and spec are project documents, written once. Tickets through ship
 run again on every milestone. The deck says that out loud on the line slide; it is
 the thing a room gets wrong if you skip it.
