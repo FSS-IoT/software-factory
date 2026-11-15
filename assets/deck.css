@@ -252,6 +252,21 @@ td.warn { color: var(--warn); }
 .note.tip { border-left-color: var(--accent); background: var(--accent-dim); }
 .note.warn { border-left-color: var(--warn); background: var(--warn-dim); }
 
+/* The two levels: what is written once, and what runs per milestone. */
+.levels { width: 100%; max-width: 52rem; margin: 1.4rem 0 0; border-collapse: collapse; }
+.levels td {
+  border: 0; border-top: 1px solid var(--rule);
+  padding: .55rem 0; vertical-align: baseline;
+}
+.levels td:first-child {
+  width: 10rem; padding-right: 1rem;
+  font-family: var(--sans); font-size: .66rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint);
+}
+.levels td:last-child {
+  font-family: var(--mono); font-size: .88rem; color: var(--ink);
+}
+
 /* --- Diagrams ------------------------------------------------------------ */
 
 .figure { margin: 1.4rem 0 1.6rem; overflow-x: auto; }
@@ -341,7 +356,7 @@ body.notes-on .notes { display: block; }
 
 /* --- Station grid (close slide) ----------------------------------------- */
 
-.strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin: 1.6rem 0 1rem; }
+.strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin: 1.6rem 0 1rem; }
 .strip div {
   background: var(--paper-lift);
   border-top: 2px solid var(--accent);

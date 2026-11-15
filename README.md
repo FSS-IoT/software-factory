@@ -33,25 +33,30 @@ light on white. That is the sheet to hand out at the end.
 |---|---|---|
 | 1 | Cover and the promise | 2 |
 | 2 | The shift: you run the factory | 4 |
-| 3 | The line: six stations, one loop | 4 |
+| 3 | The line: seven stations, one loop | 5 |
 | 4 | 01 Brief: everything you know, in one dump | 6 |
 | 5 | 02 Grilling: the adversarial interview | 10 |
 | 6 | 03 Spec: a contract you can test | 6 |
 | 7 | 04 Tickets: one behaviour, one check | 7 |
 | 8 | 05 Red/green: the check fails first | 8 |
 | 9 | 06 Review: a proposal, not a delivery | 6 |
-| 10 | Git: commits, branches, pull requests | 8 |
-| 11 | Issues and milestones: the plan and the work | 7 |
-| 12 | CI/CD: the robot inspector | 8 |
-| 13 | The repository holds everything | 5 |
-| 14 | What the agent does, what you do | 4 |
-| 15 | Five ways factories stall | 5 |
-| 16 | Your first lap (exercise) | 10 |
-| 17 | Glossary | 2 |
-| 18 | Close: the three rules | 3 |
+| 10 | 07 Ship: nothing is done until it is live | 5 |
+| 11 | Git: commits, branches, pull requests | 8 |
+| 12 | Issues and milestones: the plan and the work | 7 |
+| 13 | CI/CD: the robot inspector | 8 |
+| 14 | The repository holds everything | 5 |
+| 15 | What the agent does, what you do | 4 |
+| 16 | Five ways factories stall | 5 |
+| 17 | Your first lap (exercise) | 10 |
+| 18 | Glossary | 2 |
+| 19 | Close: the three rules | 3 |
 
-About 1h45 with the live exercise. To cut it to an hour, shorten the git and CI
-sections and run the exercise as a demo instead of hands on.
+About 2 hours with the live exercise. To cut it to an hour, shorten the git and
+CI sections and run the exercise as a demo instead of hands on.
+
+Brief, grill and spec are project documents, written once. Tickets through ship
+run again on every milestone. The deck says that out loud on the line slide; it is
+the thing a room gets wrong if you skip it.
 
 ## Editing it
 
@@ -63,6 +68,6 @@ inline SVG, which keeps them sharp on any projector and needs no libraries.
 Speaker notes live in `<aside class="notes">` inside each section, and the first
 line is the timing.
 
-If you rewrite the story, keep the shape: six stations, three of them need a
-human, and the loop back to the brief is what makes it a factory instead of a
-project.
+If you rewrite the story, keep the shape: seven stations, four of them need a
+person (brief, spec, review, and the yes that merges), and the loop back to the
+brief is what makes it a factory instead of a project.
