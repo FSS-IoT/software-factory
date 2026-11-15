@@ -19,6 +19,7 @@ Pushing to `main` publishes the same page from GitHub Pages.
 | `S` | show or hide the speaker notes |
 | `F` | full screen |
 | `Home` / `End` | first / last slide |
+| hover top-left, or click `☰` | contents, any section in one click |
 
 The page scrolls like a document. The keys jump a station at a time, and the bar
 at the bottom names where you are. A section taller than the screen scrolls
@@ -35,20 +36,20 @@ light on white. That is the sheet to hand out at the end.
 |---|---|---|
 | 1 | Cover and the promise | 2 |
 | 2 | The shift: you run the factory | 4 |
-| 3 | The line: seven stations, one loop | 5 |
-| 4 | 01 Brief: everything you know, in one dump | 6 |
-| 5 | 02 Grilling: the adversarial interview | 10 |
-| 6 | 03 Spec: a contract you can test | 6 |
-| 7 | 04 Tickets: one behaviour, one check | 7 |
-| 8 | 05 Red/green: the check fails first | 8 |
-| 9 | 06 Review: a proposal, not a delivery | 6 |
-| 10 | 07 Ship: nothing is done until it is live | 5 |
-| 11 | Git: commits, branches, pull requests | 8 |
-| 12 | Issues and milestones: the plan and the work | 7 |
-| 13 | CI/CD: the robot inspector | 8 |
-| 14 | The repository remembers the project | 5 |
-| 15 | The vault: the agent's memory | 5 |
-| 16 | Setup: twenty minutes, once (live) | 15 |
+| 3 | Setup: twenty minutes, once (live) | 15 |
+| 4 | The vault: the agent's memory | 5 |
+| 5 | The line: seven stations, one loop | 5 |
+| 6 | 01 Brief: everything you know, in one dump | 6 |
+| 7 | 02 Grilling: the adversarial interview | 10 |
+| 8 | 03 Spec: a contract you can test | 6 |
+| 9 | 04 Tickets: one behaviour, one check | 7 |
+| 10 | 05 Red/green: the check fails first | 8 |
+| 11 | 06 Review: a proposal, not a delivery | 6 |
+| 12 | 07 Ship: nothing is done until it is live | 5 |
+| 13 | Git: commits, branches, pull requests | 8 |
+| 14 | Issues and milestones: the plan and the work | 7 |
+| 15 | CI/CD: the robot inspector (optional) | 8 |
+| 16 | The repository remembers the project | 5 |
 | 17 | What the agent does, what you do | 4 |
 | 18 | Five ways factories stall | 5 |
 | 19 | Your first lap (exercise) | 10 |

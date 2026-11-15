@@ -305,6 +305,61 @@ td.warn { color: var(--warn); }
 .s-mid      { text-anchor: middle; }
 .s-end      { text-anchor: end; }
 
+/* --- Contents menu ------------------------------------------------------- */
+
+/* Hover or focus the corner and the whole deck outlines itself. Kept out of the
+   way otherwise: three faint rules, nothing to read. */
+.toc {
+  position: fixed; top: 0; left: 0; z-index: 40;
+  padding: .75rem .95rem 1.2rem .95rem;
+}
+.toc-tab {
+  display: flex; flex-direction: column; gap: 3px;
+  width: 26px; padding: 5px; background: none; border: 0;
+  cursor: pointer; opacity: .55; transition: opacity .15s;
+}
+.toc-tab span { display: block; height: 2px; background: var(--ink-faint); }
+.toc:hover .toc-tab,
+.toc:focus-within .toc-tab,
+.toc.open .toc-tab { opacity: 1; }
+.toc:hover .toc-tab span,
+.toc:focus-within .toc-tab span,
+.toc.open .toc-tab span { background: var(--accent); }
+
+.toc-panel {
+  position: absolute; top: .6rem; left: .7rem;
+  width: 20rem; max-height: calc(100vh - 3.5rem); overflow-y: auto;
+  background: var(--paper); border: 1px solid var(--rule-firm);
+  padding: .95rem 1rem 1rem;
+  opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: opacity .12s ease, transform .12s ease, visibility .12s;
+}
+.toc:hover .toc-panel,
+.toc:focus-within .toc-panel,
+.toc.open .toc-panel {
+  opacity: 1; visibility: visible; transform: none;
+}
+.toc-head {
+  font-family: var(--sans); font-size: .6rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 0 0 .55rem;
+}
+.toc ol { list-style: none; margin: 0; padding: 0; max-width: none; }
+.toc li { margin: 0; padding: 0; font-size: 1rem; }
+.toc a {
+  display: flex; gap: .6rem; align-items: baseline;
+  padding: .2rem 0; text-decoration: none;
+  font-family: var(--sans); font-size: .74rem; line-height: 1.45;
+  color: var(--ink-soft);
+}
+.toc a .n {
+  font-family: var(--mono); font-size: .64rem; color: var(--ink-faint);
+  min-width: 1.2rem;
+}
+.toc a:hover { color: var(--ink); }
+.toc a.active { color: var(--accent); }
+.toc a.active .n { color: var(--accent); }
+
 /* --- Speaker notes ------------------------------------------------------- */
 
 .notes {
@@ -392,7 +447,7 @@ body.notes-on .notes { display: block; }
     --warn: #b3213b; --warn-dim: #fbeeef;
   }
   body { background: #fff; color: #111; font-size: 10.5pt; }
-  .hud, #progress { display: none; }
+  .hud, #progress, .toc { display: none; }
   .slide { min-height: 0; padding: 0 0 1.2rem; border-bottom: 0; page-break-after: always; }
   .slide:last-of-type { page-break-after: auto; }
   .notes {
