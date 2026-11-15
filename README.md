@@ -44,7 +44,7 @@ light on white. That is the sheet to hand out at the end.
 | 11 | Git: commits, branches, pull requests | 8 |
 | 12 | Issues and milestones: the plan and the work | 7 |
 | 13 | CI/CD: the robot inspector | 8 |
-| 14 | The repository holds everything | 5 |
+| 14 | The repository remembers the project | 5 |
 | 15 | What the agent does, what you do | 4 |
 | 16 | Five ways factories stall | 5 |
 | 17 | Your first lap (exercise) | 10 |
