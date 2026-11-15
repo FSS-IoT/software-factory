@@ -456,8 +456,8 @@ until you can write the spec.</pre>
        incident has a symptom, an owner and a close condition. Same shape.</p>
     <p>One test for a good ticket: could somebody who missed this meeting pick it up
        and know when it is finished? If not, cut it smaller.</p>
-    <p>One commit is a rule of thumb. The rule that matters is one checkable
-       behaviour.</p>
+    <p>One ticket is one checkable behaviour. It does not have to be one commit;
+       red and green are two, and the red one is the proof.</p>
     <p>In a real project of mine, three features each got a ticket that was only
        "run the design session". Each closed with a document instead of code, and
        that was right.</p>
@@ -561,12 +561,16 @@ until you can write the spec.</pre>
       <ul class="plain">
         <li>A fresh agent sees the change with no memory of writing it.</li>
         <li>It hunts for gaps, not style.</li>
-        <li>You read both lists and decide.</li>
+        <li>The reviewer decides. You can overrule.</li>
       </ul>
       <p class="note tip" style="margin-top:.8rem"><strong>Approval closes the ticket.</strong>
          The commit goes on it, and the milestone keeps going until the last one.</p>
     </div>
   </div>
+
+  <p class="note tip" style="margin-top:1.2rem"><strong>Break it on purpose.</strong>
+     Change a number, invert a condition, delete a term. Run the checks. If they
+     stay green, the behaviour was never tested and the ticket goes back.</p>
 
   <aside class="notes">
     <p class="time">6 min</p>
@@ -577,6 +581,10 @@ until you can write the spec.</pre>
        fake, and the ticket goes back. The pair gets rebuilt, and the code is kept.</p>
     <p>The second agent is not ceremony. The author is kind to its own work. A fresh
        one is not.</p>
+    <p>Then break it on purpose. Change a bound, invert a condition, delete a term.
+       Run the whole suite. If every check still passes, the checks around that
+       behaviour are decoration. One or two mutations, then revert; this is a probe,
+       not a campaign.</p>
     <p>If the project has CI, CI does the mechanical checks. This station is still the
        judgment, and CI cannot do that part.</p>
   </aside>
@@ -587,7 +595,7 @@ until you can write the spec.</pre>
   <p class="eyebrow"><span class="station">Station 04</span>Ship</p>
   <h2>Ship closes the milestone</h2>
   <p class="lede">A milestone is done when its objectives are complete and the thing
-     is live. Shipping is the closing move, not a job on every ticket.</p>
+     is live. Shipping is the closing move. The default is one per milestone.</p>
 
   <div class="cols two">
     <div>
@@ -853,7 +861,7 @@ until you can write the spec.</pre>
 ├── .github/       <span class="c">the robot's instructions</span>
 ├── tests/         <span class="c">the checks</span>
 └── src/           <span class="c">the code</span>
-<span class="c">issues + milestones live beside this, numbered</span></pre>
+<span class="c">issues + milestones live in the tracker, not here</span></pre>
     </div>
     <div>
       <ul class="plain">
@@ -958,7 +966,7 @@ until you can write the spec.</pre>
     </ol>
     <ol start="5">
       <li>Red, then green. Ask to see the red.</li>
-      <li>Push. Watch CI go green.</li>
+      <li>Push. If the project has CI, watch it go green.</li>
       <li>Close the last ticket, then merge, deploy, open it.</li>
       <li>Show one person. Then take the next ticket.</li>
     </ol>
@@ -1064,7 +1072,7 @@ until you can write the spec.</pre>
 </nav>
 
 <div class="hud">
-  <div class="now"><b id="count">01</b> / <span id="total">18</span> &nbsp;<span id="title"></span></div>
+  <div class="now"><b id="count">01</b> / <span id="total">21</span> &nbsp;<span id="title"></span></div>
   <div><span class="hint-menu">☰ contents</span> &nbsp; <span class="hint-notes"><kbd>S</kbd> notes</span> &nbsp; <kbd>←</kbd><kbd>→</kbd> stations &nbsp; <kbd>F</kbd> full screen</div>
 </div>
 

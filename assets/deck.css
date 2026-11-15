@@ -453,9 +453,9 @@ body.notes-on .notes { display: block; }
     --ok: #1a7f37; --ok-dim: #eef8f0;
     --warn: #b3213b; --warn-dim: #fbeeef;
   }
-  body { background: #fff; color: #111; font-size: 10.5pt; }
+  body { background: #fff; color: #111; font-size: 9.4pt; line-height: 1.45; }
   .hud, #progress, .toc { display: none; }
-  .slide { min-height: 0; padding: 0 0 1.2rem; border-bottom: 0; page-break-after: always; }
+  .slide { min-height: 0; padding: 0 0 .6rem; border-bottom: 0; page-break-after: always; }
   .slide:last-of-type { page-break-after: auto; }
   .notes {
     display: block;
@@ -463,6 +463,10 @@ body.notes-on .notes { display: block; }
     border: 1px solid #ddd;
     border-left: 3px solid #1a7f37;
     color: #333;
+    font-size: 8pt;
+    line-height: 1.4;
+    margin-top: .9rem;
+    padding: .6rem .8rem;
   }
   .notes::before { color: #1a7f37; }
   .notes b { color: #000; }
@@ -476,7 +480,8 @@ body.notes-on .notes { display: block; }
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  h1 { font-size: 30pt; } h2 { font-size: 18pt; }
+  h1 { font-size: 28pt; } h2 { font-size: 16pt; }
+  .figure { margin: .7rem 0 .9rem; }
   .figure svg { min-width: 0; }
-  pre { border: 1px solid #ddd; border-left: 3px solid #1c4bb0; }
+  pre { border: 1px solid #ddd; border-left: 3px solid #1c4bb0; font-size: 8.4pt; }
 }

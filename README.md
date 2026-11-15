@@ -56,8 +56,9 @@ light on white. That is the sheet to hand out at the end.
 | 20 | Glossary | 2 |
 | 21 | Close: the three rules | 3 |
 
-About 2h15 with the live install and the exercise. To cut it to an hour, shorten
-the git and CI sections and run the install as a demo instead of hands on.
+About 2h15 with the live install and the exercise. To cut it to under two hours,
+run the install as a demo instead of hands on, and shorten the git and CI
+sections.
 
 CI/CD is optional and is the broadest topic here. Teach it after the loop works.
 It can run beside the loop, or take over the mechanical half of review (does it
