@@ -2,6 +2,8 @@
 
 **[Read it online](https://fss-iot.github.io/software-factory/)**
 
+The seed it teaches: **[FSS-IoT/software-factory-vault](https://github.com/FSS-IoT/software-factory-vault)**
+
 A lecture deck for a room of IT people who do not program, teaching how software
 gets built by agents one station at a time.
 
